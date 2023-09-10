@@ -1,0 +1,10 @@
+fun main() {
+    print("Hello Upiicsa")
+    print("Programación Móvil")
+    //Al usar print, los mensajes se imprimen en consola sin saltar una linea
+    
+    println("Hello Upiicsa")
+    println("Programación Móvil")
+    
+    //Al usar println, el mensaje siguiente aparecera en la proxima linea de codigo
+}
