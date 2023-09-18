@@ -1,0 +1,12 @@
+const val PI = 3.14159
+
+fun main() {
+  
+    val numerodecimal: Float =  21.1089f // Se asumira como una variable de tipo double
+    println(numerodecimal) //imprimimos el numero
+    
+    val c = 2*PI*numerodecimal
+    
+   println("El resultado es: $c")
+
+   }
