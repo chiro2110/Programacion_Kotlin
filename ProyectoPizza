@@ -1,0 +1,101 @@
+fun validarCodigoPostal(codigoPostal: String): String {
+    val codigoPostalInt = codigoPostal.toIntOrNull()
+
+    if (codigoPostalInt != null && codigoPostalInt in 7400..9400) {
+        return "¡Tenemos cobertura en tu zona!"
+    } else {
+        return "Lo sentimos, no tenemos cobertura en tu zona."
+    }
+}
+
+data class Pizza(val nombre: String, val precio: Double)
+
+fun main() {
+    println("Bienvenido a nuestra pizzería, ¿deseas registrarte? (Responde Si/No): ")
+    val registro = readLine()?.toUpperCase()
+
+    if (registro == "SI") {
+        var nombre: String?
+        var apellido: String?
+        var correo: String?
+        var telefono: String?
+        var direccion: String?
+
+        do {
+            print("Ingresa tu Nombre: ")
+            nombre = readLine()
+            print("Ingresa tu Apellido: ")
+            apellido = readLine()
+            print("Ingresa tu Correo Electrónico: ")
+            correo = readLine()
+            print("Ingresa tu Número de Teléfono: ")
+            telefono = readLine()
+            print("Ingresa tu Dirección: ")
+            direccion = readLine()
+
+            println("\nHas ingresado los siguientes datos:")
+            println("Nombre: $nombre")
+            println("Apellido: $apellido")
+            println("Correo Electrónico: $correo")
+            println("Número de Teléfono: $telefono")
+            println("Dirección: $direccion")
+            println("¿Tus datos son correctos? (Escribe Si/No)")
+            val veridatos = readLine()?.toUpperCase()
+        } while (veridatos == "NO")
+
+        print("Ingresa tu código postal para validar cobertura: ")
+        val codigoPostal = readLine()
+        if (codigoPostal != null) {
+            val mensaje = validarCodigoPostal(codigoPostal)
+            println(mensaje)
+        } else {
+            println("Código postal no válido.")
+        }
+    } else {
+        println("Ingresa tu código postal para validar cobertura: ")
+        val codigoPostal = readLine()
+        if (codigoPostal != null) {
+            val mensaje = validarCodigoPostal(codigoPostal)
+            println(mensaje)
+        } else {
+            println("Código postal no válido.")
+        }
+    }
+
+    val pizzas = listOf(
+        Pizza("Pizza Margarita", 220.0),
+        Pizza("Pizza Pepperoni", 240.0),
+        Pizza("Pizza Hawaiana", 230.0),
+        Pizza("Pizza Vegetariana", 250.0),
+        Pizza("Pizza BBQ", 235.0)
+    )
+
+    println("Menú de Pizzas:")
+    for ((index, pizza) in pizzas.withIndex()) {
+        println("${index + 1}. ${pizza.nombre} - ${pizza.precio} pesos")
+    }
+
+    println("¿Qué pizza(s) te gustaría ordenar? (Escribe el número de la pizza separado por comas, por ejemplo: 1,3,5): ")
+    val seleccion = readLine()
+
+    if (seleccion != null) {
+        val numeros = seleccion.split(",").map { it.trim().toIntOrNull() }
+
+        if (numeros.all { it != null && it > 0 && it <= pizzas.size }) {
+            println("Has ordenado las siguientes pizzas:")
+            var total = 0.0
+            for (numero in numeros.requireNoNulls()) {
+                val pizza = pizzas[numero - 1]
+                println("${pizza.nombre} - ${pizza.precio} pesos")
+                total += pizza.precio
+            }
+            println("Total a pagar: $total pesos")
+        } else {
+            println("Selección no válida. Por favor, elige números válidos de la lista.")
+        }
+    } else {
+        println("Selección no válida. Por favor, ingresa números separados por comas.")
+    }
+    println("Estamos trabajando en tu pedido")
+    println("¡Tu pedido esta listo y se dirige a tu direccion! \n ¡Te notificaremos cuando se encuentre cerca! ")
+}
