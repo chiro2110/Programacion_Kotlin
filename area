@@ -1,0 +1,12 @@
+fun calcularAreaRectangulo(base: Double, altura: Double): Double {
+    return base * altura
+}
+
+fun main() {
+    val base = 5.0 // Cambia el valor de la base según tus necesidades
+    val altura = 10.0 // Cambia el valor de la altura según tus necesidades
+
+    val area = calcularAreaRectangulo(base, altura)
+
+    println("El área del rectángulo con base $base y altura $altura es: $area")
+}
